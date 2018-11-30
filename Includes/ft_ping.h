@@ -6,7 +6,7 @@
 /*   By: adzikovs <adzikovs@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 12:37:18 by adzikovs          #+#    #+#             */
-/*   Updated: 2018/11/29 14:59:28 by adzikovs         ###   ########.fr       */
+/*   Updated: 2018/11/30 13:34:50 by adzikovs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,22 +52,30 @@ unsigned short		ip_checksum(void *b, int len);
 
 int					fill_ping_pckt(struct s_ping_pckt *pckt, uint16_t seq);
 
+void				sigint_handler(int signum);
+
+void				print_average(void);
+
+void				prepare_msg_buffer(struct msghdr *msg);
+
+ssize_t				ft_recvmsg(int s, struct msghdr *msg, int flags, uint16_t id);
+
 int					read_msg_data(struct msghdr msg, int *ttl, t_ping_pckt *pckt);
 
 void				init_stats(struct timeval start, struct timeval end);
 
 void				update_stats(struct timeval start, struct timeval end);
 
-float				calculate_ping_inter(struct timeval tv_start, struct timeval tv_end);
+void				print_ping_res(struct timeval tv_end, t_my_msg msg);
 
-float				calculate_ping(struct timeval diff);
-
-void				sigint_handler(int signum);
-
-void				print_average(void);
+int					single_ping(int s, t_ping_pckt *pckt,struct sockaddr *sout);
 
 struct timeval		timeval_add(struct timeval v1, struct timeval v2);
 
 struct timeval		timeval_scal_div(struct timeval v1, long v2);
+
+float				calculate_ping_inter(struct timeval tv_start, struct timeval tv_end);
+
+float				calculate_ping(struct timeval diff);
 
 #endif

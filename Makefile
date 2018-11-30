@@ -11,11 +11,15 @@ SRCS1 =	\
 		get_host_addr.c\
 		create_socket.c\
 		fill_ping_pckt.c\
-		stats.c\
 		sigint_handler.c\
-		calculate_ping.c\
+			prepare_msg_buffer.c\
+			ft_recvmsg.c\
+				read_msg_data.c\
+				stats.c\
+			print_ping_res.c\
+		single_ping.c\
 		timeval_math.c\
-		read_msg_data.c\
+		calculate_ping.c\
 		main.c\
 
 SRCS1_R = $(SRCS1:%.c=$(SDIR)/%.c)
